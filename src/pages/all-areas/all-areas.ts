@@ -22,7 +22,7 @@ export class AllAreasPage {
   }
 
   openArea(area: Area) {
-    this.navCtrl.push('AreaDetailPage', {
+    this.navCtrl.push('AreaPage', {
       area: area
     });
   }

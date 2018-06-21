@@ -1,0 +1,30 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ crag.name }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content [ngSwitch]="segment" padding>
+  <ion-segment [(ngModel)]="segment">
+    <ion-segment-button value="routes">
+      Routes
+    </ion-segment-button>
+    <ion-segment-button value="details">
+      Details
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-list *ngSwitchCase="'routes'">
+    <button ion-item *ngFor="let route of currentRoutes" (click)="openRoute(route)">
+      <h2>{{route.name}}</h2>
+    </button>
+  </ion-list>
+  <ion-card *ngSwitchCase="'details'">
+    <ion-card-content>{{ crag.description }}</ion-card-content>
+  </ion-card>
+
+</ion-content>

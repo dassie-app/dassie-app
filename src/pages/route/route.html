@@ -1,0 +1,35 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ route.name }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      <ion-icon *ngFor="let star of starArray" name="star"></ion-icon>
+      {{route.grade}}
+      <span *ngIf="route.number_draws > 0">[{{ route.number_draws }}D]</span>
+    </ion-card-header>
+
+    <ion-card-content>
+      {{ route.description }}
+
+      <ion-row padding-top>
+        <ion-col>
+          <span>{{ route?.fa_date }} - {{ route?.fa_text}}</span>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          {{ route?.notes }}
+        </ion-col>
+      </ion-row>
+
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
