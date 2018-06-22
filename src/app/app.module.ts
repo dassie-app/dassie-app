@@ -12,6 +12,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { Items } from '../mocks/providers/items';
 import { Settings, User, Api, Areas, Crags, Routes} from '../providers';
 import { MyApp } from './app.component';
+import { Database } from '../providers/database/database';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -67,7 +68,8 @@ export function provideSettings(storage: Storage) {
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Areas,
     Crags,
-    Routes
+    Routes,
+    Database
   ]
 })
 export class AppModule { }
