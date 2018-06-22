@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Areas } from '../../providers';
 import { Area } from '../../models/area';
+import { Update } from '../../providers';
 
 @IonicPage()
 @Component({
@@ -11,8 +12,15 @@ import { Area } from '../../models/area';
 export class AllAreasPage {
 
   currentAreas: Area[];
+  allOffline: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public areas: Areas) {
+  constructor(
+    private navCtrl: NavController,
+    private navParams: NavParams,
+    private areas: Areas,
+    private update: Update
+  ) {
+    this.allOffline = this.update.allOffline;
   }
 
   ionViewDidLoad() {
@@ -25,6 +33,10 @@ export class AllAreasPage {
     this.navCtrl.push('AreaPage', {
       area: area
     });
+  }
+
+  updateAll() {
+    this.update.updateAll();
   }
 
 }

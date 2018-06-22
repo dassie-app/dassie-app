@@ -8,6 +8,8 @@
 
 <ion-content>
 
+  <button ion-button full *ngIf="!allOffline" (click)="updateAll()">Download Data</button>
+
   <ion-list>
     <button ion-item *ngFor="let area of currentAreas" (click)="openArea(area)">
       <h2>{{area.name}}</h2>

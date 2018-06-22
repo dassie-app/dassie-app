@@ -12,17 +12,22 @@ export class Update {
   private _areasOffline = false;
   private _cragsOffline = false;
   private _routesOffline = false;
+  private _allOffline = false;
 
   get areasOffline() {
-    return this.areasOffline;
+    return this._areasOffline;
   }
 
   get cragsOffline() {
-    return this.areasOffline;
+    return this._cragsOffline;
   }
 
   get routesOffline() {
-    return this.areasOffline;
+    return this._routesOffline;
+  }
+
+  get allOffline() {
+    return this._allOffline;
   }
 
   constructor(

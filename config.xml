@@ -3,7 +3,7 @@
     <name>The Boven App</name>
     <description>A rock climbing guide for Waterval Boven</description>
     <author email="howzit@thebovenapp.com" href="http://www.thebovenapp.com/">The Boven App Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.8.125:8101" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -85,7 +85,6 @@
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyCUYiMVH15snIXIp8pG-xWK__bLHrhoExw" />
         <variable name="API_KEY_FOR_IOS" value="AIzaSyCUYiMVH15snIXIp8pG-xWK__bLHrhoExw" />
     </plugin>
-    <allow-navigation href="http://192.168.8.125:8101" />
     <engine name="ios" spec="4.5.4" />
-    <plugin name="cordova-sqlite-storage" spec="^2.3.2" />
+    <allow-navigation href="http://192.168.8.125:8101" />
 </widget>

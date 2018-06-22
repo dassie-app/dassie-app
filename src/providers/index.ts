@@ -5,5 +5,4 @@ export { User } from './user/user';
 export { Areas } from './areas/areas';
 export { Crags } from './crags/crags';
 export { Routes } from './routes/routes';
-export { Database } from './database/database';
 export { Update } from './update/update';
