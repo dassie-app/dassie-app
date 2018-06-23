@@ -9,4 +9,3 @@ export const MainPage = 'TabsPage';
 export const Tab1Root = 'AllAreasPage';
 export const Tab2Root = 'SearchPage';
 export const Tab3Root = 'MapPage';
-export const Tab4Root = 'SettingsPage';
