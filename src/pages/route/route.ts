@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { Route } from '../../models/route';
 
 @IonicPage()
@@ -12,7 +12,11 @@ export class RoutePage {
   route: Route;
   starArray: any[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private modalCtrl: ModalController
+  ) {
     this.route = this.navParams.get('route');
     console.log(this.route);
     if (this.route.stars) {
@@ -20,6 +24,16 @@ export class RoutePage {
         this.starArray.push(0);
       }
     }
+  }
+
+  editRoute() {
+    let editModal = this.modalCtrl.create('RouteEditPage');
+    editModal.onDidDismiss(route => {
+      if(route) {
+        alert('add code to edit route');
+      }
+    });
+    editModal.present();
   }
 
 }
