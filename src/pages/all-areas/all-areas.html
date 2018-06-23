@@ -8,9 +8,13 @@
 
 <ion-content>
 
-  <button ion-button full *ngIf="!allOffline" (click)="updateAll()">Download Data</button>
+  <button ion-button full *ngIf="!allOffline && !loading" (click)="updateAll()">Download Data</button>
 
-  <ion-list>
+  <ion-row justify-content-center>
+    <ion-spinner *ngIf="loading"></ion-spinner>
+  </ion-row>
+
+  <ion-list *ngIf="allOffline">
     <button ion-item *ngFor="let area of currentAreas" (click)="openArea(area)">
       <h2>{{area.name}}</h2>
     </button>

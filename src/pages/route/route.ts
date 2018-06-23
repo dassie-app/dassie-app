@@ -10,12 +10,15 @@ import { Route } from '../../models/route';
 export class RoutePage {
 
   route: Route;
-  starArray: any[];
+  starArray: any[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.route = this.navParams.get('route');
-    for (let i = 0; i < this.route.stars; i++) {
-      this.starArray.push(0);
+    console.log(this.route);
+    if (this.route.stars) {
+      for (let i = 0; i < this.route.stars; i++) {
+        this.starArray.push(0);
+      }
     }
   }
 

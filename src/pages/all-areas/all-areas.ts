@@ -13,6 +13,7 @@ export class AllAreasPage {
 
   currentAreas: Area[];
   allOffline: boolean;
+  loading = false;
 
   constructor(
     private navCtrl: NavController,
@@ -20,11 +21,13 @@ export class AllAreasPage {
     private areas: Areas,
     private update: Update
   ) {
-    this.allOffline = this.update.allOffline;
+    this.update.offlineChanges().subscribe(data => {
+      this.allOffline = data.all;
+    });
   }
 
   ionViewDidLoad() {
-    this.areas.getAllAreas().subscribe((response: Area[]) => {
+    this.areas.getAllAreas().then((response: Area[]) => {
       this.currentAreas = response;
     });
   }
@@ -36,6 +39,15 @@ export class AllAreasPage {
   }
 
   updateAll() {
+    this.loading = true;
+    this.update.offlineChanges().subscribe(data => {
+      if(data.all){
+        this.loading = false;
+        this.areas.getAllAreas().then((areas: Area[]) => {
+          this.currentAreas = areas;
+        });
+      }
+    });
     this.update.updateAll();
   }
 

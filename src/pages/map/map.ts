@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import {
   GoogleMaps,
   GoogleMap,
@@ -19,11 +19,13 @@ export class MapPage {
 
   map: GoogleMap;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private platform: Platform) {
   }
 
   ionViewDidLoad() {
-    this.loadMap();
+    if (this.platform.is('cordova')) {
+      this.loadMap();
+    }
   }
 
   loadMap() {

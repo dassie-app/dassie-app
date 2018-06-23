@@ -20,7 +20,7 @@ export class AreaPage {
   }
 
   ionViewDidLoad() {
-    this.crags.getCragsByArea(this.area).subscribe((crags: Crag[]) => {
+    this.crags.getCragsByArea(this.area).then((crags: Crag[]) => {
       this.currentCrags = crags;
     });
   }

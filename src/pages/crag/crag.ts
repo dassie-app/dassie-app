@@ -20,7 +20,7 @@ export class CragPage {
   }
 
   ionViewDidLoad() {
-    this.routes.getRoutesByCrag(this.crag).subscribe((routes: Route[]) => {
+    this.routes.getRoutesByCrag(this.crag).then((routes: Route[]) => {
       this.currentRoutes = routes;
     });
   }
