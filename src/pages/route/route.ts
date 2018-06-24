@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { Route } from '../../models/route';
+import { Wishlist } from '../../providers';
 
 @IonicPage()
 @Component({
@@ -15,7 +16,8 @@ export class RoutePage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private wishlist: Wishlist
   ) {
     this.route = this.navParams.get('route');
     console.log(this.route);
@@ -36,4 +38,9 @@ export class RoutePage {
     editModal.present();
   }
 
+  addToWishlist(){
+    this.wishlist.addToWishlist(this.route);
+  }
+
 }
+
