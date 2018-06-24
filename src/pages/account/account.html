@@ -1,0 +1,20 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Account</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card *ngIf="currentUser">
+    <img src="https://placebear.com/300/300"/>
+    <ion-card-content>
+      <ion-card-title>{{ currentUser.name }}</ion-card-title>
+    </ion-card-content>
+  </ion-card>
+  <button ion-button full primary *ngIf="currentUser" (click)="editAccount()">Edit Account</button>
+  <button ion-button full primary *ngIf="!currentUser" (click)="createAccount()">Create Account</button>
+
+</ion-content>

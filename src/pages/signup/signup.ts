@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
 
-import { User } from '../../providers';
+import { Account } from '../../providers';
 import { MainPage } from '../';
 
 @IonicPage()
@@ -14,7 +14,7 @@ export class SignupPage {
   // The account fields for the login form.
   // If you're using the username field with or without email, make
   // sure to add it to the type
-  account: { name: string, email: string, password: string } = {
+  accountDetails: { name: string, email: string, password: string } = {
     name: '',
     email: '',
     password: ''
@@ -24,7 +24,7 @@ export class SignupPage {
   private signupErrorString: string;
 
   constructor(public navCtrl: NavController,
-    public user: User,
+    public account: Account,
     public toastCtrl: ToastController,
     public translateService: TranslateService) {
 
@@ -35,7 +35,7 @@ export class SignupPage {
 
   doSignup() {
     // Attempt to login in through our User service
-    this.user.signup(this.account).then(() => {
+    this.account.signup(this.accountDetails).then(() => {
       this.navCtrl.push(MainPage);
     }).catch(err => {
 

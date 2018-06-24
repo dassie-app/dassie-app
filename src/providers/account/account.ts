@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Api } from '../api/api';
 import { Storage } from '@ionic/storage';
+import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
+import { Subject } from 'rxjs/Subject';
+import { User } from '../../models/user';
 
 @Injectable()
-export class User {
+export class Account {
+  userChange = new Subject<User>();
   _user: any;
   get user() {
     return this._user;
   }
 
   constructor(private api: Api, private storage: Storage) {
-    this.storage.get('user').then(user => {
-      this._user = user;
-    });
   }
 
   /**
@@ -51,12 +53,24 @@ export class User {
     });
   }
 
+  getUser() {
+    return Observable.create((observer: Observer<User>) => {
+      this.storage.get('user').then(user => {
+        observer.next(user);
+      });
+      this.userChange.subscribe(user => {
+        observer.next(user);
+      });
+    });
+  }
+
   /**
    * Log the user out, which forgets the session
    */
   logout() {
     this._user = null;
     this.storage.remove('user');
+    this.userChange.next(null);
   }
 
   /**
@@ -65,5 +79,6 @@ export class User {
   _loggedIn(user) {
     this._user = user;
     this.storage.set('user', user);
+    this.userChange.next(user);
   }
 }

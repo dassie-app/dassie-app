@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
 
-import { User } from '../../providers';
+import { Account } from '../../providers';
 import { MainPage } from '../';
 
 @IonicPage()
@@ -11,7 +11,7 @@ import { MainPage } from '../';
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  account: { email: string, password: string } = {
+  accountDetails: { email: string, password: string } = {
     email: '',
     password: ''
   }
@@ -20,7 +20,7 @@ export class LoginPage {
   private loginErrorString: string;
 
   constructor(public navCtrl: NavController,
-    public user: User,
+    public account: Account,
     public toastCtrl: ToastController,
     public translateService: TranslateService) {
 
@@ -31,7 +31,7 @@ export class LoginPage {
 
   // Attempt to login in through our User service
   doLogin() {
-    this.user.login(this.account).then(() => {
+    this.account.login(this.accountDetails).then(() => {
       this.navCtrl.push(MainPage);
     }).catch(err => {
       this.navCtrl.push(MainPage);

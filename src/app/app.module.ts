@@ -9,8 +9,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
-import { Items } from '../mocks/providers/items';
-import { Settings, User, Api, Areas, Crags, Routes} from '../providers';
+import { Settings, Account, Api, Areas, Crags, Routes} from '../providers';
 import { MyApp } from './app.component';
 import { Update } from '../providers/update/update';
 
@@ -58,8 +57,7 @@ export function provideSettings(storage: Storage) {
   ],
   providers: [
     Api,
-    Items,
-    User,
+    Account,
     Camera,
     SplashScreen,
     StatusBar,
