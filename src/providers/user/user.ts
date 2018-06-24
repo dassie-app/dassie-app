@@ -5,8 +5,15 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class User {
   _user: any;
+  get user() {
+    return this._user;
+  }
 
-  constructor(private api: Api, private storage: Storage) { }
+  constructor(private api: Api, private storage: Storage) {
+    this.storage.get('user').then(user => {
+      this._user = user;
+    });
+  }
 
   /**
    * Send a POST request to our login endpoint with the data
@@ -31,18 +38,17 @@ export class User {
    * the user entered on the form.
    */
   signup(accountInfo: any) {
-    let seq = this.api.post('signup', accountInfo).share();
-
-    seq.subscribe((res: any) => {
-      // If the API returned a successful response, mark the user as logged in
-      if (res.status == 'success') {
-        this._loggedIn(res);
-      }
-    }, err => {
-      console.error('ERROR', err);
+    let query = `users?email=${accountInfo.email}&password=${accountInfo.password}`;
+    return new Promise((resolve, reject) => {
+      this.api.post('users', accountInfo).subscribe((user) => {
+        if(user) {
+          this._loggedIn(user);
+          resolve();
+        } else {
+          reject();
+        }
+      });
     });
-
-    return seq;
   }
 
   /**

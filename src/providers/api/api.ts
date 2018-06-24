@@ -15,8 +15,8 @@ export class Api {
     return this.http.get(this.url + '/' + endpoint, { responseType: 'json' });
   }
 
-  post(endpoint: string, body: any, reqOpts?: any) {
-    return this.http.post(this.url + '/' + endpoint, body, reqOpts);
+  post(endpoint: string, body: any) {
+    return this.http.post(this.url + '/' + endpoint, body, { responseType: 'json' });
   }
 
   put(endpoint: string, body: any, reqOpts?: any) {

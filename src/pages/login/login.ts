@@ -11,8 +11,10 @@ import { MainPage } from '../';
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  email: string;
-  password: string;
+  account: { email: string, password: string } = {
+    email: '',
+    password: ''
+  }
 
   // Our translated text strings
   private loginErrorString: string;
@@ -29,7 +31,7 @@ export class LoginPage {
 
   // Attempt to login in through our User service
   doLogin() {
-    this.user.login({ email: this.email, password: this.password }).then(() => {
+    this.user.login(this.account).then(() => {
       this.navCtrl.push(MainPage);
     }).catch(err => {
       this.navCtrl.push(MainPage);
