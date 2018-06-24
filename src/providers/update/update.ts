@@ -92,10 +92,10 @@ export class Update {
 
   }
 
-  async checkAllOffline() {
+  checkAllOffline() {
     this._allOffline = this.areasOffline && this.cragsOffline && this.routesOffline;
     this.emitOfflineChanges();
-    await this.storage.set('allOffline', this._allOffline);
+    this.storage.set('allOffline', this._allOffline);
   }
 
   offlineChanges() {
