@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, ModalController } from 'ionic-angular';
 import { Account } from '../../providers';
 
 /**
@@ -20,8 +20,8 @@ export class AccountPage {
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams,
-    private account: Account
+    private account: Account,
+    private modalCtrl: ModalController
   ) {
     this.account.getUser().subscribe(user => {
       this.currentUser = user;
@@ -29,6 +29,16 @@ export class AccountPage {
   }
 
   ionViewDidLoad() {
+  }
+
+  editAccount() {
+    let editModal = this.modalCtrl.create('AccountEditPage', { user: this.currentUser });
+    editModal.onDidDismiss(user => {
+      if(user) {
+        this.account.saveUser(user);
+      }
+    });
+    editModal.present();
   }
 
 }

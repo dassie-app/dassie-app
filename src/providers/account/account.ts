@@ -64,6 +64,12 @@ export class Account {
     });
   }
 
+  saveUser(user) {
+    console.log('saving user: ', user);
+    this._user = user;
+    this.storage.set('user', user);
+  }
+
   /**
    * Log the user out, which forgets the session
    */
