@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the WishlistPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Wishlist, Routes } from '../../providers';
+import { Route } from '../../models/route';
 
 @IonicPage()
 @Component({
@@ -15,11 +10,27 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class WishlistPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  currentRoutes: Route[];
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private wishlist: Wishlist,
+    private routes: Routes
+  ) {
+    this.wishlist.getWishlist().then(wishlist => {
+      this.routes.getRoutesByIds(wishlist).then(routes => {
+        this.currentRoutes = routes;
+      })
+    });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WishlistPage');
+  }
+
+  openRoute(route: Route) {
+    this.navCtrl.push('RoutePage', { route });
   }
 
 }

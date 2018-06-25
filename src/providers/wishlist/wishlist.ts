@@ -23,4 +23,8 @@ export class Wishlist {
       this.storage.set('wishlist', wishlist);
     });
   }
+
+  getWishlist() {
+    return this.storage.get('wishlist')
+  }
 }
