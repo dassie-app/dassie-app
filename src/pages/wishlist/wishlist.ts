@@ -33,4 +33,9 @@ export class WishlistPage {
     this.navCtrl.push('RoutePage', { route });
   }
 
+  //The remove method calls the provider method to remove the selected Id from the Wishlist local storage array
+  removeRoute(route) {
+    this.wishlist.removeFromWishlist(route);
+  }
+
 }
