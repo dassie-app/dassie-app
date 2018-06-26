@@ -21,6 +21,7 @@ export class AllAreasPage {
     private areas: Areas,
     private update: Update
   ) {
+    this.allOffline = this.update.allOffline;
     this.update.offlineChanges().subscribe(data => {
       this.allOffline = data.all;
     });

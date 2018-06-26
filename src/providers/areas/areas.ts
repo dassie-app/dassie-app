@@ -9,13 +9,7 @@ export class Areas {
   }
 
   getAllAreas() {
-    return new Promise((resolve, reject) => {
-      this.storage.get('areas').then(areas => {
-        resolve(areas);
-      }).catch(err => {
-        // TODO handle error
-      });
-    });
+    return this.storage.get('areas');
   }
 
 }
