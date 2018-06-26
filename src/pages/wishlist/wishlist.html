@@ -1,0 +1,31 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Wishlist</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let route of currentRoutes" (click)="openRoute(route)">
+      <ion-item>
+        <h2>{{route.name}}</h2>
+      </ion-item>
+
+      <!-- Need to stop this swipe from navigating even after clicking a button. I figure that this could be done in the provider method but there might be a better way. -->
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="removeRoute(route)">
+          <ion-icon name="remove-circle"></ion-icon>
+          Remove
+        </button>
+        <button ion-button color="secondary">
+          <ion-icon name="checkbox-outline"></ion-icon>
+          Completed
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>

@@ -20,4 +20,15 @@ export class Routes {
     });
   }
 
+  getRoutesByIds(routeIds: number[]): Promise<Route[]> {
+    return new Promise((resolve, reject) => {
+      this.storage.get('routes').then(routes => {
+        let returnRoutes = routes.filter(route => {
+          return routeIds.some(id => id == route.id);
+        });
+        resolve(returnRoutes);
+      });
+    });
+  }
+
 }

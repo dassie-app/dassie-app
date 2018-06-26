@@ -12,6 +12,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { Settings, Account, Api, Areas, Crags, Routes} from '../providers';
 import { MyApp } from './app.component';
 import { Update } from '../providers/update/update';
+import { Wishlist } from '../providers/wishlist/wishlist';
 
 // The translate loader needs to know where to load i18n files
 // in Ionic's static asset pipeline.
@@ -67,7 +68,8 @@ export function provideSettings(storage: Storage) {
     Areas,
     Crags,
     Routes,
-    Update
+    Update,
+    Wishlist
   ]
 })
 export class AppModule { }
