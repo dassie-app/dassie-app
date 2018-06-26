@@ -24,7 +24,7 @@ import { Settings } from '../providers';
     </ion-content>
 
   </ion-menu>
-  <ion-nav #content [root]="rootPage"></ion-nav>`
+  <ion-nav #content [root]="rootPage" [swipeBackEnabled]="false"></ion-nav>`
 })
 export class MyApp {
   rootPage = FirstRunPage;

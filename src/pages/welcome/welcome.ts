@@ -25,6 +25,6 @@ export class WelcomePage {
   }
 
   continue() {
-    this.navCtrl.push('TabsPage');
+    this.navCtrl.push('AllAreasPage');
   }
 }
