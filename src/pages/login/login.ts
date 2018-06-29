@@ -11,8 +11,8 @@ import { MainPage } from '../';
   templateUrl: 'login.html'
 })
 export class LoginPage {
-  accountDetails: { email: string, password: string } = {
-    email: '',
+  accountDetails: { username: string, password: string } = {
+    username: '',
     password: ''
   }
 

@@ -2,13 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, ModalController } from 'ionic-angular';
 import { Account } from '../../providers';
 
-/**
- * Generated class for the AccountPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-account',
@@ -16,15 +9,15 @@ import { Account } from '../../providers';
 })
 export class AccountPage {
 
-  currentUser;
+  profile;
 
   constructor(
     public navCtrl: NavController,
     private account: Account,
     private modalCtrl: ModalController
   ) {
-    this.account.getUser().subscribe(user => {
-      this.currentUser = user;
+    this.account.getProfile().subscribe(profile => {
+      this.profile = profile;
     });
   }
 
@@ -32,7 +25,7 @@ export class AccountPage {
   }
 
   editAccount() {
-    let editModal = this.modalCtrl.create('AccountEditPage', { user: this.currentUser });
+    let editModal = this.modalCtrl.create('AccountEditPage', { profile: this.profile });
     editModal.onDidDismiss(user => {
       if(user) {
         this.account.saveUser(user);

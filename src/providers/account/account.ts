@@ -5,16 +5,20 @@ import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { Subject } from 'rxjs/Subject';
 import { User } from '../../models/user';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders  } from '@angular/common/http';
 
 @Injectable()
 export class Account {
+  API_ROOT = 'http://localhost:8000/';
   userChange = new Subject<User>();
   _user: any;
+  token: string;
   get user() {
     return this._user;
   }
 
-  constructor(private api: Api, private storage: Storage) {
+  constructor(private api: Api, private storage: Storage, private http: HttpClient) {
   }
 
   /**
@@ -22,17 +26,17 @@ export class Account {
    * the user entered on the form.
    */
   login(accountInfo: any) {
-    let query = `users?email=${accountInfo.email}&password=${accountInfo.password}`;
+
     return new Promise((resolve, reject) => {
-      this.api.get(query).subscribe((result: any[]) => {
-        if(result.length) {
-          this._loggedIn(result[0])
-          resolve();
-        } else {
-          reject();
-        }
+      this.http.post(this.API_ROOT + 'authenticate/', accountInfo).subscribe(response => {
+        let token = response['token'];
+        console.log('token: ', token);
+        this.token = token;
+        this.retrieveUserProfile();
+        resolve();
       });
     });
+
   }
 
   /**
@@ -52,6 +56,28 @@ export class Account {
       });
     });
   }
+
+  retrieveUserProfile() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${this.token}`
+      })
+    }
+    this.http.get(this.API_ROOT + 'api/profile/', httpOptions ).subscribe(profile => {
+      console.log('profile', profile)
+      this.storage.set('profile', profile);
+    });
+  }
+
+  getProfile() {
+    return Observable.create((observer: Observer<User>) => {
+      this.storage.get('profile').then(profile => {
+        observer.next(profile);
+      });
+    });
+  }
+
 
   getUser() {
     return Observable.create((observer: Observer<User>) => {

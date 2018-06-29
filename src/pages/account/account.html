@@ -11,13 +11,13 @@
 
 
 <ion-content padding>
-  <ion-card *ngIf="currentUser">
-    <img src="{{ currentUser.image }}"/>
+  <ion-card *ngIf="profile">
+    <img src="http://dev.dassie.co/{{ profile.profile_image }}"/>
     <ion-card-content>
-      <ion-card-title>{{ currentUser.name }}</ion-card-title>
+      <ion-card-title>{{ profile.user.name }}</ion-card-title>
     </ion-card-content>
   </ion-card>
-  <button ion-button full primary *ngIf="currentUser" (click)="editAccount()">Edit Account</button>
-  <button ion-button full primary *ngIf="!currentUser" (click)="createAccount()">Create Account</button>
+  <button ion-button full primary *ngIf="profile" (click)="editAccount()">Edit Account</button>
+  <button ion-button full primary *ngIf="!profile" (click)="createAccount()">Create Account</button>
 
 </ion-content>
